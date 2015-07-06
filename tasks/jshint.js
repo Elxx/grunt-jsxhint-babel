@@ -2,9 +2,9 @@ var rewire = require('rewire');
 var proxyquire = require('proxyquire');
 
 try {
-  var babel = require('babel');
+  var babel = require('babel-core');
 } catch (e) {
-  throw new Error('grunt-jsxhint: The module `babel` was not found. ' +
+  throw new Error('grunt-jsxhint-babel: The module `babel-core` was not found. ' +
     'To fix this error run `npm install babel --save-dev`.', e);
 }
 
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
       try {
         compiled = babel.transform(code).code;
       } catch (err) {
-        throw new Error('grunt-jsxhint: Error while running JSXTransformer on ' + file + '\n' + err.message);
+        throw new Error('grunt-jsxhint-babel: Error while running Babel on ' + file + '\n' + err.message);
       }
 
       origLint(compiled, results, config, data, file);
